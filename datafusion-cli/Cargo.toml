@@ -35,7 +35,7 @@ async-trait = "0.1.41"
 aws-config = { version = "1.2.1", features = ["behavior-version-latest"] }
 aws-credential-types = "1.2.0"
 clap = { version = "3", features = ["derive", "cargo"] }
-datafusion = { path = "../datafusion/core", version = "37.1.0", features = [
+datafusion = { version = "37.1.0", features = [
     "avro",
     "crypto_expressions",
     "datetime_expressions",
