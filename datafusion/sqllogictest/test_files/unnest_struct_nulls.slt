@@ -40,8 +40,12 @@ SELECT unnest(arrow_cast(NULL, 'Struct("a": non-null Int32)'));
 NULL
 
 statement ok
+CREATE TABLE required_struct (s STRUCT<a INT> NOT NULL)
+AS SELECT named_struct('a', 1);
+
+statement ok
 CREATE VIEW required_fields AS
-SELECT unnest(arrow_cast(named_struct('a', 1), 'Struct("a": non-null Int32)'));
+SELECT unnest(arrow_cast(s, 'Struct("a": non-null Int32)')) FROM required_struct;
 
 query T
 SELECT is_nullable FROM information_schema.columns WHERE table_name = 'required_fields';
